@@ -1,7 +1,7 @@
 FROM centos:7
 
 ARG USER_ID=1000
-ARG GROUP_ID=1000
+ARG GROUP_ID=1
 
 MAINTAINER Fer Uria <fauria@gmail.com>
 LABEL Description="vsftpd Docker image based on Centos 7. Supports passive mode and virtual users." \
@@ -15,8 +15,8 @@ RUN yum install -y \
 	db4-utils \
 	db4 && yum clean all
 
-RUN usermod -u ${USER_ID} ftp
-RUN groupmod -g ${GROUP_ID} ftp
+RUN usermod -ou ${USER_ID} ftp
+RUN groupmod -og ${GROUP_ID} ftp
 
 ENV FTP_USER **String**
 ENV FTP_PASS **Random**
